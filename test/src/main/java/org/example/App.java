@@ -1,4 +1,4 @@
-package com.tan;
+package org.example;
 
 /**
  * Hello world!
