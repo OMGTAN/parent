@@ -11,6 +11,9 @@
         <module>test</module>
         <module>ntyJob</module>
         <module>sbStart</module>
+        <module>consumer</module>
+        <module>eureka</module>
+        <module>common</module>
     </modules>
 
     <packaging>pom</packaging><!--修改打包方式-->
@@ -43,10 +46,31 @@
                 <artifactId>netty-all</artifactId>
                 <version>4.1.69.Final</version>
             </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.4</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.8</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -54,6 +78,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.2.2.RELEASE</version>
             </plugin>
         </plugins>
     </build>
