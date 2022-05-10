@@ -22,6 +22,7 @@ public class TestController {
     UserClient userClient;
 
     @PostMapping("post")
+
     public String hello(HelloForm helloForm){
         helloForm.setName("www");
         helloForm.setAge(10);
