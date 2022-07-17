@@ -1,8 +1,10 @@
 package com.common.model;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
 @Data
+@ApiModel
 public class ResposeModel {
 
 
@@ -23,6 +25,6 @@ public class ResposeModel {
     }
 
     public static ResposeModel failed(String message) {
-        return new ResposeModel("200", message, null);
+        return new ResposeModel("501", message, null);
     }
 }
