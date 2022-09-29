@@ -1,8 +1,13 @@
 spring:
   application:
     name: provider
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
 server:
   port: 8080
+
 # ===== 自定义swagger配置 ===== #
 swagger:
   enable: true
