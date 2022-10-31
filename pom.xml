@@ -7,6 +7,9 @@
     <groupId>org.example</groupId>
     <artifactId>parent</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>japi</module>
+    </modules>
 
 
     <packaging>pom</packaging><!--修改打包方式-->
@@ -38,6 +41,30 @@
                 <version>4.1.69.Final</version>
             </dependency>
 
+            <dependency>
+                <groupId>io.github.yedaxia</groupId>
+                <artifactId>japidocs</artifactId>
+                <version>1.4.4</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-boot-starter</artifactId>
+                <version>3.0.0</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>31.1-jre</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>6.0.9.Final</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
@@ -49,18 +76,7 @@
             <scope>provided</scope>
         </dependency>
 
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-boot-starter</artifactId>
-            <version>3.0.0</version>
-        </dependency>
 
-
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>31.1-jre</version>
-        </dependency>
 
     </dependencies>
 
