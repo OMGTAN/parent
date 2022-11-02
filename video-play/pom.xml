@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>japi</artifactId>
+    <artifactId>video-play</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -21,16 +21,5 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>io.github.yedaxia</groupId>
-            <artifactId>japidocs</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-        </dependency>
     </dependencies>
-
 </project>
