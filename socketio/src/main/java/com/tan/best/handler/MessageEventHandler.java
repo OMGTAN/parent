@@ -35,7 +35,7 @@ public class MessageEventHandler {
         socketIOClientMap.put(mac, client);
         //回发消息
         client.sendEvent("message", "onConnect back");
-        log.info("客户端:" + client.getSessionId() + "已连接,mac=" + mac);
+        log.info("客户端:{} 已连接,mac={}, namespace={}", client.getSessionId(),  mac, client.getNamespace().getName());
     }
 
     /**
@@ -60,6 +60,22 @@ public class MessageEventHandler {
         log.info("发来消息：" + data);
         //回发消息
         client.sendEvent("messageevent", "我是服务器都安发送的信息");
+        //广播消息
+        sendBroadcast();
+    }
+
+    /**
+     * 客户端事件
+     *
+     * @param client  　客户端信息
+     * @param request 请求信息
+     * @param data    　客户端发送数据
+     */
+    @OnEvent(value = "hello")
+    public void onEventHello(SocketIOClient client, AckRequest request, String data) {
+        log.info("发来消息：" + data);
+        //回发消息
+        client.sendEvent("hello", "我是服务器都安发送的信息--hello");
         //广播消息
         sendBroadcast();
     }

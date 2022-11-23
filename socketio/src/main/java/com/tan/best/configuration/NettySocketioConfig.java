@@ -16,6 +16,8 @@ public class NettySocketioConfig {
         config.setHostname("localhost");
         config.setPort(9092);
 
+        config.setContext("/snc");
+
         SocketIOServer server = new SocketIOServer(config);
         return server;
     }
