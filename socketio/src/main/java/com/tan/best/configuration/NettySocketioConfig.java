@@ -27,4 +27,6 @@ public class NettySocketioConfig {
     public SpringAnnotationScanner springAnnotationScanner() {
         return new SpringAnnotationScanner(socketIOServer());
     }
+
+
 }
