@@ -10,6 +10,7 @@
     <modules>
         <module>video-play</module>
         <module>socketio</module>
+        <module>file-download</module>
     </modules>
 
 
@@ -66,6 +67,13 @@
                 <artifactId>hibernate-validator</artifactId>
                 <version>6.0.9.Final</version>
             </dependency>
+
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>5.8.10</version>
+            </dependency>
+
 
         </dependencies>
     </dependencyManagement>
