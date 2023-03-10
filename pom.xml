@@ -10,6 +10,8 @@
     <modules>
         <module>video-play</module>
         <module>socketio</module>
+        <module>file-download</module>
+        <module>test</module>
     </modules>
 
 
