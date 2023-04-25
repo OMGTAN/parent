@@ -12,6 +12,7 @@
         <module>socketio</module>
         <module>file-download</module>
         <module>test</module>
+        <module>auto-inspection</module>
     </modules>
 
 
