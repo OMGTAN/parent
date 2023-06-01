@@ -2,6 +2,7 @@ package com.tan.test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,9 @@ import java.util.Map;
 public class JsonUtils {
 
     public static final ObjectMapper mapper = new ObjectMapper();
+    static {
+        mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+    }
 
     private static final Logger logger = LoggerFactory.getLogger(JsonUtils.class);
 

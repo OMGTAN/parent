@@ -19,7 +19,7 @@ public class JsonHandler {
 
 
         Person2 p2 = JSON.parseObject(jsonString, Person2.class);
-        System.out.println(p2.getNAme());
+        System.out.println(p2.getName());
         System.out.println(p2.getAGe());
 
 
@@ -33,6 +33,6 @@ public class JsonHandler {
         String jsonString1 = JSON.toJSONString(list);
         List<Person2> person2s = JSON.parseArray(jsonString1, Person2.class);
         System.out.println("person2s.get(0).getNAme()");
-        System.out.println(person2s.get(0).getNAme());
+        System.out.println(person2s.get(0).getName());
     }
 }
