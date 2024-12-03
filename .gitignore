@@ -37,3 +37,4 @@ target/
 .project
 .classpath
 /.local-browser/
+~*.docx

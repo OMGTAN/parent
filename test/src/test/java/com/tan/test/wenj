@@ -1,0 +1,16 @@
+D:\suaee\交易宝\我的投标\保密承诺书0824.docx
+D:\suaee\交易宝\我的投标\标书模板\1、封底封面设计\封1.jpg
+
+String imagePath = "D:/suaee/交易宝/我的投标/标书模板/1、封底封面设计/封1.jpg";  // 替换为实际图片路径
+
+// 插入附件（通过超链接）
+String attachmentPath = "file:///D:/suaee/交易宝/我的投标/标书模板/8、相关附件/保密承诺书/保密承诺书0824.docx";
+
+"D:\\suaee\\交易宝\\我的投标\\files\\服务方案——股权项目0823.docx", "D:\\suaee\\交易宝\\我的投标\\files\\同类项目经验（示例）——能源电力业（2017-2020年）.docx"
+
+D:\repos\github\jyb\jyb-biz\jyb-biz-service\src\main\resources\mybid
+
+String templatePath = "D:\\repos\\github\\jyb\\jyb-biz\\jyb-biz-service\\src\\main\\resources\\mybid/yinyan.docx"; // 模板文件路径
+String outputPath = "D:\\repos\\github\\jyb\\jyb-biz\\jyb-biz-service\\src\\main\\resources\\mybid/file.docx"; // 输出文件路径
+
+String imagePath = "D:\\repos\\github\\jyb\\jyb-biz\\jyb-biz-service\\src\\main\\resources\\mybid/封1.jpg"; // 图片路径
