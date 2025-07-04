@@ -19,7 +19,7 @@ public class CompanyApiCaller2 {
 
     public static void main(String[] args) {
         String [] inf = new String[]{
-                "f3030001",};
+                "f3010003",};
         for (int i = 0; i < inf.length; i++) {
             System.out.println("正在处理接口：" + inf[i] + " " + LocalDateTime.now());
             int start = start(inf[i]);
@@ -29,7 +29,7 @@ public class CompanyApiCaller2 {
 
     private static int start(String id) {
         int i = 0;
-        int threadCount = 5; // 可根据实际情况调整线程数
+        int threadCount = 11; // 可根据实际情况调整线程数
         ExecutorService executor = Executors.newFixedThreadPool(threadCount);
         try (BufferedReader br = new BufferedReader(new FileReader(FILE_PATH))) {
             String companyName;
@@ -51,7 +51,7 @@ public class CompanyApiCaller2 {
                         System.out.println("正在处理第 " + idx + " 条数据");
                         Map<String, Object> request = buildRequestBody(name, id);
                         sendPostRequest(request, id);
-                        Thread.currentThread().sleep(1000);
+//                        Thread.currentThread().sleep(1000);
                     } catch (Exception e) {
 	                    throw new RuntimeException(e);
                     } finally {

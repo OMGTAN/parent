@@ -16,8 +16,7 @@ public class CompanyApiCaller {
 
     public static void main(String[] args) {
         String [] inf = new String[]{
-
-                "f3030001",};
+                "f3010030",};
         for (int i = 0; i < inf.length; i++) {
             System.out.println("正在处理接口：" + inf[i]);
             int start = start(inf[i]);
@@ -55,7 +54,7 @@ public class CompanyApiCaller {
         head.put("x-ams-token", "2445f555f28f1ff1395e997e00eba49d");
 
         Map<String, Object> data = new HashMap<>();
-        data.put("sessionId", "853f65654f9e4f6ca30fffa495bcf973");
+        data.put("sessionId", "af26c63de56e4a8ab8f37fcb91cc710b");
         data.put("serviceId", "suaeeDc."+ id);
 
         String bodyJson = "{\"corp_name\":\"" + companyName + "\"}";
@@ -64,7 +63,7 @@ public class CompanyApiCaller {
         requestBody.put("head", head);
         requestBody.put("data", data);
         requestBody.put("namespace", "suaee");
-        requestBody.put("sessionId", "853f65654f9e4f6ca30fffa495bcf973");
+        requestBody.put("sessionId", "af26c63de56e4a8ab8f37fcb91cc710b");
 
         return requestBody;
     }
