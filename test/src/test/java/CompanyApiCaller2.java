@@ -7,8 +7,11 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-public class CompanyApiCaller {
+public class CompanyApiCaller2 {
 
     private static final String FILE_PATH = "C:\\Users\\tan\\Desktop\\1\\corpname.txt";
     private static final String API_URL = "http://10.21.15.163:6005/service/suaeeDc."; // 替换成实际接口地址
@@ -16,10 +19,9 @@ public class CompanyApiCaller {
 
     public static void main(String[] args) {
         String [] inf = new String[]{
-
                 "f3030001",};
         for (int i = 0; i < inf.length; i++) {
-            System.out.println("正在处理接口：" + inf[i]);
+            System.out.println("正在处理接口：" + inf[i] + " " + LocalDateTime.now());
             int start = start(inf[i]);
             System.out.println(inf[i]+"处理完成，共处理了" + start + "条数据");
         }
@@ -27,23 +29,42 @@ public class CompanyApiCaller {
 
     private static int start(String id) {
         int i = 0;
+        int threadCount = 5; // 可根据实际情况调整线程数
+        ExecutorService executor = Executors.newFixedThreadPool(threadCount);
         try (BufferedReader br = new BufferedReader(new FileReader(FILE_PATH))) {
             String companyName;
+            // 先统计总行数
+            int total = 0;
+            br.mark(10 * 1024 * 1024); // 10MB mark
+            while (br.readLine() != null) total++;
+            br.reset();
+            CountDownLatch latch = new CountDownLatch(total);
             while ((companyName = br.readLine()) != null) {
-                if (companyName.trim().isEmpty()) continue;
-
-                System.out.println("正在处理第 " + i + " 条数据");
-//                System.out.println("正在处理公司：" + companyName);
-
-                // 构建请求体
-                Map<String, Object> request = buildRequestBody(companyName, id);
-
-                // 发送请求
-                sendPostRequest(request, id);
+                final String name = companyName;
+                if (name.trim().isEmpty()) {
+                    latch.countDown();
+                    continue;
+                }
+                final int idx = i;
+                executor.submit(() -> {
+                    try {
+                        System.out.println("正在处理第 " + idx + " 条数据");
+                        Map<String, Object> request = buildRequestBody(name, id);
+                        sendPostRequest(request, id);
+                        Thread.currentThread().sleep(1000);
+                    } catch (Exception e) {
+	                    throw new RuntimeException(e);
+                    } finally {
+                        latch.countDown();
+                    }
+                });
                 i++;
             }
-        } catch (IOException e) {
+            latch.await();
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
+        } finally {
+            executor.shutdown();
         }
         return i;
     }
@@ -55,7 +76,7 @@ public class CompanyApiCaller {
         head.put("x-ams-token", "2445f555f28f1ff1395e997e00eba49d");
 
         Map<String, Object> data = new HashMap<>();
-        data.put("sessionId", "853f65654f9e4f6ca30fffa495bcf973");
+        data.put("sessionId", "a8bdb7af833d4052b867130a94c09b29");
         data.put("serviceId", "suaeeDc."+ id);
 
         String bodyJson = "{\"corp_name\":\"" + companyName + "\"}";
@@ -64,7 +85,7 @@ public class CompanyApiCaller {
         requestBody.put("head", head);
         requestBody.put("data", data);
         requestBody.put("namespace", "suaee");
-        requestBody.put("sessionId", "853f65654f9e4f6ca30fffa495bcf973");
+        requestBody.put("sessionId", "a8bdb7af833d4052b867130a94c09b29");
 
         return requestBody;
     }
