@@ -19,7 +19,19 @@ public class CompanyApiCaller2 {
 
     public static void main(String[] args) {
         String [] inf = new String[]{
-                "f3010003",};
+                "f3010024",
+                "f3010007",
+                "f3010025",
+                "f3010023",
+                "f3010026",
+                "f3010028",
+                "f3010027",
+                "f3010029",
+                "f3010030",
+                "f3010035",
+                "f3010036",
+                "f3010037",
+                "f3030001",};
         for (int i = 0; i < inf.length; i++) {
             System.out.println("正在处理接口：" + inf[i] + " " + LocalDateTime.now());
             int start = start(inf[i]);
@@ -29,7 +41,7 @@ public class CompanyApiCaller2 {
 
     private static int start(String id) {
         int i = 0;
-        int threadCount = 11; // 可根据实际情况调整线程数
+        int threadCount = 21; // 可根据实际情况调整线程数
         ExecutorService executor = Executors.newFixedThreadPool(threadCount);
         try (BufferedReader br = new BufferedReader(new FileReader(FILE_PATH))) {
             String companyName;
@@ -50,7 +62,7 @@ public class CompanyApiCaller2 {
                     try {
                         System.out.println("正在处理第 " + idx + " 条数据");
                         Map<String, Object> request = buildRequestBody(name, id);
-                        sendPostRequest(request, id);
+                        sendPostRequest(request, id, idx);
 //                        Thread.currentThread().sleep(1000);
                     } catch (Exception e) {
 	                    throw new RuntimeException(e);
@@ -76,7 +88,7 @@ public class CompanyApiCaller2 {
         head.put("x-ams-token", "2445f555f28f1ff1395e997e00eba49d");
 
         Map<String, Object> data = new HashMap<>();
-        data.put("sessionId", "a8bdb7af833d4052b867130a94c09b29");
+        data.put("sessionId", "29015d7a702e45c5888f27d8b7ae92ea");
         data.put("serviceId", "suaeeDc."+ id);
 
         String bodyJson = "{\"corp_name\":\"" + companyName + "\"}";
@@ -85,14 +97,14 @@ public class CompanyApiCaller2 {
         requestBody.put("head", head);
         requestBody.put("data", data);
         requestBody.put("namespace", "suaee");
-        requestBody.put("sessionId", "a8bdb7af833d4052b867130a94c09b29");
+        requestBody.put("sessionId", "29015d7a702e45c5888f27d8b7ae92ea");
 
         return requestBody;
     }
 
-    private static void sendPostRequest(Map<String, Object> requestBody, String id) {
+    private static void sendPostRequest(Map<String, Object> requestBody, String id, int idx) {
 
         String body = HttpRequest.post(API_URL+id + API_URL2).body(JSONUtil.toJsonStr(requestBody)).execute().body();
-        System.out.println(body);
+        System.out.println(idx +"  " +body);
     }
 }
