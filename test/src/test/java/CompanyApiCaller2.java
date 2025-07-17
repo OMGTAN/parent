@@ -19,6 +19,21 @@ public class CompanyApiCaller2 {
 
     public static void main(String[] args) {
         String [] inf = new String[]{
+                "f3010012",
+                "f3010006",
+                "f3010014",
+                "f3010013",
+                "f3010008",
+                "f3010010",
+                "f3010002",
+                "f3010009",
+                "f3010003",
+                "f3010011",
+                "f3010016",
+                "f3010004",
+                "f3010015",
+                "f3010005",
+                "f3010026",
                 "f3010024",
                 "f3010007",
                 "f3010025",
@@ -41,7 +56,7 @@ public class CompanyApiCaller2 {
 
     private static int start(String id) {
         int i = 0;
-        int threadCount = 21; // 可根据实际情况调整线程数
+        int threadCount = 11; // 可根据实际情况调整线程数
         ExecutorService executor = Executors.newFixedThreadPool(threadCount);
         try (BufferedReader br = new BufferedReader(new FileReader(FILE_PATH))) {
             String companyName;
@@ -88,7 +103,7 @@ public class CompanyApiCaller2 {
         head.put("x-ams-token", "2445f555f28f1ff1395e997e00eba49d");
 
         Map<String, Object> data = new HashMap<>();
-        data.put("sessionId", "29015d7a702e45c5888f27d8b7ae92ea");
+        data.put("sessionId", "3f0607ee4c9847f5b3875a791f6b0170");
         data.put("serviceId", "suaeeDc."+ id);
 
         String bodyJson = "{\"corp_name\":\"" + companyName + "\"}";
@@ -97,7 +112,7 @@ public class CompanyApiCaller2 {
         requestBody.put("head", head);
         requestBody.put("data", data);
         requestBody.put("namespace", "suaee");
-        requestBody.put("sessionId", "29015d7a702e45c5888f27d8b7ae92ea");
+        requestBody.put("sessionId", "3f0607ee4c9847f5b3875a791f6b0170");
 
         return requestBody;
     }
