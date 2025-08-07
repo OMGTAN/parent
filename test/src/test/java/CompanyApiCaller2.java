@@ -19,33 +19,7 @@ public class CompanyApiCaller2 {
 
     public static void main(String[] args) {
         String [] inf = new String[]{
-                "f3010012",
-                "f3010006",
-                "f3010014",
-                "f3010013",
-                "f3010008",
-                "f3010010",
-                "f3010002",
-                "f3010009",
-                "f3010003",
-                "f3010011",
-                "f3010016",
-                "f3010004",
-                "f3010015",
-                "f3010005",
-                "f3010026",
-                "f3010024",
-                "f3010007",
-                "f3010025",
-                "f3010023",
-                "f3010026",
-                "f3010028",
-                "f3010027",
-                "f3010029",
-                "f3010030",
-                "f3010035",
-                "f3010036",
-                "f3010037",
+
                 "f3030001",};
         for (int i = 0; i < inf.length; i++) {
             System.out.println("正在处理接口：" + inf[i] + " " + LocalDateTime.now());
@@ -56,7 +30,7 @@ public class CompanyApiCaller2 {
 
     private static int start(String id) {
         int i = 0;
-        int threadCount = 11; // 可根据实际情况调整线程数
+        int threadCount = 9; // 可根据实际情况调整线程数
         ExecutorService executor = Executors.newFixedThreadPool(threadCount);
         try (BufferedReader br = new BufferedReader(new FileReader(FILE_PATH))) {
             String companyName;
@@ -103,16 +77,18 @@ public class CompanyApiCaller2 {
         head.put("x-ams-token", "2445f555f28f1ff1395e997e00eba49d");
 
         Map<String, Object> data = new HashMap<>();
-        data.put("sessionId", "3f0607ee4c9847f5b3875a791f6b0170");
+        data.put("sessionId", "addfcfbd991f42deaa8da31551ca5162");
         data.put("serviceId", "suaeeDc."+ id);
 
         String bodyJson = "{\"corp_name\":\"" + companyName + "\"}";
+//        String bodyJson = "{\"corp_name\":\"" + companyName + "\", \"update\":\"1\", \"forceUpdate\":\"1\"}";
+
         data.put("body", bodyJson);
 
         requestBody.put("head", head);
         requestBody.put("data", data);
         requestBody.put("namespace", "suaee");
-        requestBody.put("sessionId", "3f0607ee4c9847f5b3875a791f6b0170");
+        requestBody.put("sessionId", "addfcfbd991f42deaa8da31551ca5162");
 
         return requestBody;
     }
