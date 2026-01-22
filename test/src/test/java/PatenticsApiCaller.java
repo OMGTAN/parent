@@ -11,18 +11,17 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class CompanyApiCaller2 {
+public class PatenticsApiCaller {
 
     private static final String FILE_PATH = "C:\\Users\\tan\\Desktop\\1\\corpname.txt";
-    private static final String API_URL = "http://10.21.15.165:5006/service/suaeeDc."; // 网关
-//    private static final String API_URL = "http://10.21.15.163:6005/service/suaeeDc."; // nginx
+//    private static final String API_URL = "http://10.21.15.165:5006/service/suaeeDc."; // 网关
+    private static final String API_URL = "http://10.21.15.163:6005/service/suaeeDc."; // nginx
     private static final String API_URL2 = "@etm.suaee/service"; // 替换成实际接口地址
 
     public static void main(String[] args) {
         String [] inf = new String[]{
 
-		        "f3030001",
-
+                "f3040002",
         };
         for (int i = 0; i < inf.length; i++) {
             System.out.println("正在处理接口：" + inf[i] + " " + LocalDateTime.now());
@@ -80,10 +79,11 @@ public class CompanyApiCaller2 {
         head.put("x-ams-token", "068bbf0cec6f470e655532a0953414b8");
 
         Map<String, Object> data = new HashMap<>();
-        data.put("sessionId", "d8817c7776e441de8a1dcaffcac11970");
+        data.put("sessionId", "7939078cd1494655b1de70513e5f8f02");
         data.put("serviceId", "suaeeDc."+ id);
 
-        String bodyJson = "{\"corp_name\":\"" + companyName + "\"}";
+//        String bodyJson = "{\"corp_name\":\"" + companyName + "\"}";
+        String bodyJson = "{\"pub_number\":\"" + companyName + "\"}";
 //        String bodyJson = "{\"corp_name\":\"" + companyName + "\", \"update\":\"1\", \"forceUpdate\":\"1\"}";
 
         data.put("body", bodyJson);
@@ -91,7 +91,7 @@ public class CompanyApiCaller2 {
         requestBody.put("head", head);
         requestBody.put("data", data);
         requestBody.put("namespace", "suaee");
-        requestBody.put("sessionId", "d8817c7776e441de8a1dcaffcac11970");
+        requestBody.put("sessionId", "7939078cd1494655b1de70513e5f8f02");
 
         return requestBody;
     }
@@ -100,7 +100,8 @@ public class CompanyApiCaller2 {
 
         String body = HttpRequest.post(API_URL+id + API_URL2).body(JSONUtil.toJsonStr(requestBody)).execute().body();
 		if(body.contains("Request Success")){
-			System.out.println(idx);
+//			System.out.println(idx);
+			System.out.println(idx +"  " + (body.length()>200 ? body.substring(0, 200) : body));
 		}else {
 			System.out.println(idx +"  " + (body.length()>200 ? body.substring(0, 200) : body));
 		}

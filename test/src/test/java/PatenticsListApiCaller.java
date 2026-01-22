@@ -11,7 +11,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class CompanyApiCaller {
+public class PatenticsListApiCaller {
 
     private static final String FILE_PATH = "C:\\Users\\tan\\Desktop\\1\\corpname.txt";
 //    private static final String API_URL = "http://10.21.15.165:5006/service/suaeeDc."; // 网关
@@ -83,7 +83,7 @@ public class CompanyApiCaller {
         data.put("serviceId", "suaeeDc."+ id);
 
 //        String bodyJson = "{\"corp_name\":\"" + companyName + "\"}";
-        String bodyJson = "{\"cert_code\":\"" + companyName + "\"}";
+        String bodyJson = "{\"library_type\":\"3076\",\"cert_code\":\"" + companyName + "\"}";
 //        String bodyJson = "{\"corp_name\":\"" + companyName + "\", \"update\":\"1\", \"forceUpdate\":\"1\"}";
 
         data.put("body", bodyJson);
