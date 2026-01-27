@@ -1,3 +1,5 @@
+package com.tan.dc;
+
 import cn.hutool.http.HttpRequest;
 import cn.hutool.json.JSONUtil;
 
@@ -11,7 +13,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class PatenticsApiCaller {
+public class CompanyApiCaller {
 
     private static final String FILE_PATH = "C:\\Users\\tan\\Desktop\\1\\corpname.txt";
 //    private static final String API_URL = "http://10.21.15.165:5006/service/suaeeDc."; // 网关
@@ -21,7 +23,8 @@ public class PatenticsApiCaller {
     public static void main(String[] args) {
         String [] inf = new String[]{
 
-                "f3040002",
+                "f3010025",
+                "f3010005",
         };
         for (int i = 0; i < inf.length; i++) {
             System.out.println("正在处理接口：" + inf[i] + " " + LocalDateTime.now());
@@ -32,7 +35,7 @@ public class PatenticsApiCaller {
 
     private static int start(String id) {
         int i = 0;
-        int threadCount = 5; // 可根据实际情况调整线程数
+        int threadCount = 1; // 可根据实际情况调整线程数
         ExecutorService executor = Executors.newFixedThreadPool(threadCount);
         try (BufferedReader br = new BufferedReader(new FileReader(FILE_PATH))) {
             String companyName;
@@ -79,11 +82,11 @@ public class PatenticsApiCaller {
         head.put("x-ams-token", "068bbf0cec6f470e655532a0953414b8");
 
         Map<String, Object> data = new HashMap<>();
-        data.put("sessionId", "7939078cd1494655b1de70513e5f8f02");
+        data.put("sessionId", Constant.SESSION_ID);
         data.put("serviceId", "suaeeDc."+ id);
 
 //        String bodyJson = "{\"corp_name\":\"" + companyName + "\"}";
-        String bodyJson = "{\"pub_number\":\"" + companyName + "\"}";
+        String bodyJson = "{\"cert_code\":\"" + companyName + "\"}";
 //        String bodyJson = "{\"corp_name\":\"" + companyName + "\", \"update\":\"1\", \"forceUpdate\":\"1\"}";
 
         data.put("body", bodyJson);
@@ -91,7 +94,7 @@ public class PatenticsApiCaller {
         requestBody.put("head", head);
         requestBody.put("data", data);
         requestBody.put("namespace", "suaee");
-        requestBody.put("sessionId", "7939078cd1494655b1de70513e5f8f02");
+        requestBody.put("sessionId", Constant.SESSION_ID);
 
         return requestBody;
     }

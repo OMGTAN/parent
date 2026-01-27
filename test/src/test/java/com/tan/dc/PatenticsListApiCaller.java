@@ -1,3 +1,5 @@
+package com.tan.dc;
+
 import cn.hutool.http.HttpRequest;
 import cn.hutool.json.JSONUtil;
 
@@ -79,7 +81,7 @@ public class PatenticsListApiCaller {
         head.put("x-ams-token", "068bbf0cec6f470e655532a0953414b8");
 
         Map<String, Object> data = new HashMap<>();
-        data.put("sessionId", "7939078cd1494655b1de70513e5f8f02");
+        data.put("sessionId", Constant.SESSION_ID);
         data.put("serviceId", "suaeeDc."+ id);
 
 //        String bodyJson = "{\"corp_name\":\"" + companyName + "\"}";
@@ -91,7 +93,7 @@ public class PatenticsListApiCaller {
         requestBody.put("head", head);
         requestBody.put("data", data);
         requestBody.put("namespace", "suaee");
-        requestBody.put("sessionId", "7939078cd1494655b1de70513e5f8f02");
+        requestBody.put("sessionId", Constant.SESSION_ID);
 
         return requestBody;
     }
